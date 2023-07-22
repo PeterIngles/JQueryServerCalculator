@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 app.use(express.static('server/public'))
 
-let sendSolution = {};
+let sendSolution
 
 
 app.get('/solution', (req, res) => {

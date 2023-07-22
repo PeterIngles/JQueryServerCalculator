@@ -12,6 +12,7 @@ function onReady() {
 
     console.log('Hey Jquery is working')
     getSolution()
+
 }
 
 // Made operator selector functions
@@ -72,11 +73,11 @@ let sendNumbers = (event) => {
         console.log("Error with POST request", error)
         alert("Error with POST")
     })
+    
     // Take some data and send to server
 }
 
 let getSolution = () => {
-
     // Use Ajax to retrieve (GET) quotes from server
     // Server endpooint: /quotes
     console.log('inside getSolution')
@@ -96,16 +97,14 @@ let getSolution = () => {
         alert("Request failed")
         console.log("Request failed", error)
     })
+    
 }
 
 
 let render = () => {
-    $('#output2').empty()
-
-    // Looping over and appending to DOM
-
+    $("#output2").empty()
     $('#output2').append(`
         <li>
         <span>${solution.num1}</span> <span>${solution.num2}</span>
         </li>`)
-}
+    }
