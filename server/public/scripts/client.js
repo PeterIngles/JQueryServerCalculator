@@ -1,6 +1,6 @@
 $(document).ready(onReady)
 
-let server
+let serverPackage = {};
 
 function onReady() {
     $('.add-button').on('click', addFood)
