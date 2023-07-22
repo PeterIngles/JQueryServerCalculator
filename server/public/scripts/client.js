@@ -1,23 +1,51 @@
 $(document).ready(onReady)
 
-// Declare out serverPackage as an object
-
-
 let solution = {};
+let operator = ""
 
 function onReady() {
-    $('#enterBtn').on('click', sendNumbers)
+    // $('#enterBtn').on('click', sendNumbers)
     $('#plusBtn').on('click', plusSelector)
     $('#minusBtn').on('click', minusSelector)
     $('#multiplyBtn').on('click', multiplySelector)
     $('#divideBtn').on('click', divideSelector)
 
     console.log('Hey Jquery is working')
-    getSolution()
+    // getSolution()
 }
 
+// Made operator selector functions
+function plusSelector(event){
+    console.log('inside plusBtn')
+    event.preventDefault();
+    operator = '+'
+    console.log(operator)
+    return operator
+}
 
+function minusSelector(event){
+    console.log('inside minusBtn')
+    event.preventDefault();
+    operator = '-'
+    console.log(operator)
+    return operator
+}
 
+function multiplySelector(event){
+    console.log('inside multiplyBtn')
+    event.preventDefault();
+    operator = '*'
+    console.log(operator)
+    return operator
+}
+
+function divideSelector(event){
+    console.log('inside divideBtn')
+    event.preventDefault();
+    operator = '/'
+    console.log(operator)
+    return operator
+}
 
 // Create our POST function that will send the serverPackage to the server
 let sendNumbers = (event) => {
@@ -26,7 +54,7 @@ let sendNumbers = (event) => {
     const sentNumbers = {
         num1: $("#num1Input").val(),
         num2: $("num2Input").val(),
-        operation: $()
+        operation: operator
     }
 
     // AJAX to communicate and send data to server
@@ -34,7 +62,7 @@ let sendNumbers = (event) => {
     $.ajax({
         method: "POST", // type of request
         url: "/sendnumbers", //route that will be used
-        data: serverPackage // Needs to be an object
+        data: sentNumbers // Needs to be an object
 
     }).then((response) => {
         console.log("POST was successful", response) //Expect 201
@@ -51,18 +79,18 @@ let getSolution = () => {
 
     // Use Ajax to retrieve (GET) quotes from server
         // Server endpooint: /quotes
-  console.log('inside getFood')  
+  console.log('inside getSolution')  
 
 //   AJAX
     $.ajax({
         // Tells Ajax how to communicate with server, 
         // also tells Ajax where to go on the server
         method: 'GET',
-        url: '/food'
+        url: '/solution'
     }).then((response) => {
         console.log(response)
 
-        food = response //Adds our quote to the DOM (as long as the server is still running)
+        solution = response //Adds our quote to the DOM (as long as the server is still running)
         render()
     }).catch((error) => {
         alert("Request failed")
