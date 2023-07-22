@@ -11,24 +11,28 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 app.use(express.static('server/public'))
 
-let foodList = [];
+let sendSolution = {};
 
 
-app.get('/food', (req, res) => {
-    console.log("Arrived at /food", foodList)
+app.get('/solution', (req, res) => {
+    console.log("Arrived at /solution", sendSolution)
 
     // Server is responding with the quoteList
-    res.send(foodList)
+    res.send(sendSolution)
     // res.sendStatus(200)
 })
 
-app.post('/addfood', (req, res) => {
-    console.log("Body for addfood:", req.body);
+app.post('/sendnumbers', (req, res) => {
+    console.log("Body for /sendnumbers:", req.body);
 
-    let foodToAdd = req.body
-    foodList.push(foodToAdd)
+    let mathToRun = req.body
+    sendSolution = {
+        num1: mathToRun.num1,
+        num2: mathToRun.num2,
+        operator: mathToRun.operator
+    }
 
-    console.log("current food list:", foodList)
+    console.log("current solution:", sendSolution)
     res.sendStatus(201)
 })
 

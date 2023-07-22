@@ -1,21 +1,21 @@
 $(document).ready(onReady)
 
-let solution = {};
-let operator = ""
+let solution
+let operator
 
 function onReady() {
-    // $('#enterBtn').on('click', sendNumbers)
+    $('#enterBtn').on('click', sendNumbers)
     $('#plusBtn').on('click', plusSelector)
     $('#minusBtn').on('click', minusSelector)
     $('#multiplyBtn').on('click', multiplySelector)
     $('#divideBtn').on('click', divideSelector)
 
     console.log('Hey Jquery is working')
-    // getSolution()
+    getSolution()
 }
 
 // Made operator selector functions
-function plusSelector(event){
+function plusSelector(event) {
     console.log('inside plusBtn')
     event.preventDefault();
     operator = '+'
@@ -23,7 +23,7 @@ function plusSelector(event){
     return operator
 }
 
-function minusSelector(event){
+function minusSelector(event) {
     console.log('inside minusBtn')
     event.preventDefault();
     operator = '-'
@@ -31,7 +31,7 @@ function minusSelector(event){
     return operator
 }
 
-function multiplySelector(event){
+function multiplySelector(event) {
     console.log('inside multiplyBtn')
     event.preventDefault();
     operator = '*'
@@ -39,7 +39,7 @@ function multiplySelector(event){
     return operator
 }
 
-function divideSelector(event){
+function divideSelector(event) {
     console.log('inside divideBtn')
     event.preventDefault();
     operator = '/'
@@ -53,7 +53,7 @@ let sendNumbers = (event) => {
     console.log('inside sendNumbers')
     const sentNumbers = {
         num1: $("#num1Input").val(),
-        num2: $("num2Input").val(),
+        num2: $("#num2Input").val(),
         operation: operator
     }
 
@@ -78,10 +78,10 @@ let sendNumbers = (event) => {
 let getSolution = () => {
 
     // Use Ajax to retrieve (GET) quotes from server
-        // Server endpooint: /quotes
-  console.log('inside getSolution')  
+    // Server endpooint: /quotes
+    console.log('inside getSolution')
 
-//   AJAX
+    //   AJAX
     $.ajax({
         // Tells Ajax how to communicate with server, 
         // also tells Ajax where to go on the server
@@ -100,16 +100,12 @@ let getSolution = () => {
 
 
 let render = () => {
-    $('#inventory').empty()
+    $('#output2').empty()
 
     // Looping over and appending to DOM
-    for (let item of food){
-        console.log(item)
-        $('#inventory').append(`
+
+    $('#output2').append(`
         <li>
-        <span>
-        ${item.food}</span> <span>${item.description}</span>
-        </li>
-        `)
-    }
+        <span>${solution.num1}</span> <span>${solution.num2}</span>
+        </li>`)
 }
