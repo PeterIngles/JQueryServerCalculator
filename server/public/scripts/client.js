@@ -72,7 +72,7 @@ let sendNumbers = (event) => {
         console.log("Error with POST request", error)
         alert("Error with POST")
     })
-    
+
     // Take some data and send to server
 }
 
@@ -96,7 +96,7 @@ let getSolution = () => {
         alert("Request failed")
         console.log("Request failed", error)
     })
-    
+
 }
 
 
@@ -104,12 +104,12 @@ let render = () => {
     $("#output1").empty()
     $("#output1").append(`${solution[0].answer}`)
     $("#output2").empty()
-    for (let output of solution){  
+    for (let output of solution) {
         $('#output2').append(`
             <li>
             <span>${output.num1}</span><span>${output.operation}</span><span>${output.num2}</span><span> = ${output.answer}</span>
             </li>`)
     }
-    
-    }
+
+}
 

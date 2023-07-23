@@ -2,13 +2,13 @@
 const express = require('express')
 
 // Body parser is required for POST request
-const bodyParser= require('body-parser');
+const bodyParser = require('body-parser');
 const send = require('send');
 
 const app = express();
 const port = 5000;
 
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(express.static('server/public'))
 
@@ -20,25 +20,25 @@ let sendSolution = []
 
 
 
-function calculatorFunction(){
+function calculatorFunction() {
     console.log("inside calculatorFunction")
-    if(mathToRun.operation == "+"){
+    if (mathToRun.operation == "+") {
         solution = Number(mathToRun.num1) + Number(mathToRun.num2)
-    } else if (mathToRun.operation == "-"){
+    } else if (mathToRun.operation == "-") {
         solution = Number(mathToRun.num1) - Number(mathToRun.num2)
-    } else if (mathToRun.operation == "*"){
+    } else if (mathToRun.operation == "*") {
         solution = Number(mathToRun.num1) * Number(mathToRun.num2)
     } else {
         solution = Number(mathToRun.num1) / Number(mathToRun.num2)
-        
+
     }
- solutionPackage = {
-    num1: mathToRun.num1,
-    num2: mathToRun.num2,
-    operation: mathToRun.operation,
-    answer: solution
-}
-sendSolution.unshift(solutionPackage)
+    solutionPackage = {
+        num1: mathToRun.num1,
+        num2: mathToRun.num2,
+        operation: mathToRun.operation,
+        answer: solution
+    }
+    sendSolution.unshift(solutionPackage)
 }
 
 app.get('/solution', (req, res) => {
@@ -55,11 +55,11 @@ app.post('/sendnumbers', (req, res) => {
     // if(!req.body.num1 ||! req.body.num2 || req.body.operation){
     //     // Tried to prevent it from pulling if the the inputs are empty
     // } else{ 
-        mathToRun = req.body
-        
-        calculatorFunction(mathToRun)
-    
-   
+    mathToRun = req.body
+
+    calculatorFunction(mathToRun)
+
+
     res.sendStatus(201)
 })
 
