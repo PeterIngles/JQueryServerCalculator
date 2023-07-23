@@ -96,7 +96,6 @@ let getSolution = () => {
         alert("Request failed")
         console.log("Request failed", error)
     })
-
 }
 
 
