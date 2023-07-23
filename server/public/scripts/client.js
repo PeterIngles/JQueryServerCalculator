@@ -101,9 +101,15 @@ let getSolution = () => {
 
 
 let render = () => {
+    $("#output1").empty()
+    $("#output1").append(`${solution[0].answer}`)
     $("#output2").empty()
-    $('#output2').append(`
-        <li>
-        <span>${solution.num1}</span> <span>${solution.num2}</span>
-        </li>`)
+    for (let output of solution){  
+        $('#output2').append(`
+            <li>
+            <span>${output.num1}</span><span>${output.operation}</span><span>${output.num2}</span><span> = ${output.answer}</span>
+            </li>`)
     }
+    
+    }
+

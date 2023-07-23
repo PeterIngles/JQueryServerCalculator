@@ -14,13 +14,31 @@ app.use(express.static('server/public'))
 
 
 let mathToRun
+let solutionPackage
+let solution
 let sendSolution = []
 
 
+
 function calculatorFunction(){
+    console.log("inside calculatorFunction")
     if(mathToRun.operation == "+"){
+        solution = Number(mathToRun.num1) + Number(mathToRun.num2)
+    } else if (mathToRun.operation == "-"){
+        solution = Number(mathToRun.num1) - Number(mathToRun.num2)
+    } else if (mathToRun.operation == "*"){
+        solution = Number(mathToRun.num1) * Number(mathToRun.num2)
+    } else {
+        solution = Number(mathToRun.num1) / Number(mathToRun.num2)
         
     }
+ solutionPackage = {
+    num1: mathToRun.num1,
+    num2: mathToRun.num2,
+    operation: mathToRun.operation,
+    answer: solution
+}
+sendSolution.unshift(solutionPackage)
 }
 
 app.get('/solution', (req, res) => {
@@ -33,15 +51,14 @@ app.get('/solution', (req, res) => {
 
 app.post('/sendnumbers', (req, res) => {
     console.log("Body for /sendnumbers:", req.body);
-    if(!req.body.num1||!req.body.num2||req.body.operation){
-        // To prevent it from pulling if the the inputs are empty
-    } else{ mathToRun = req.body
-
-    }
-
+    // console.log(req.body.operation)
+    // if(!req.body.num1 ||! req.body.num2 || req.body.operation){
+    //     // Tried to prevent it from pulling if the the inputs are empty
+    // } else{ 
+        mathToRun = req.body
+        
+        calculatorFunction(mathToRun)
     
-
-    calculatorFunction(mathToRun)
    
     res.sendStatus(201)
 })
