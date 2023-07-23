@@ -2,7 +2,8 @@
 const express = require('express')
 
 // Body parser is required for POST request
-const bodyParser= require('body-parser')
+const bodyParser= require('body-parser');
+const send = require('send');
 
 const app = express();
 const port = 5000;
@@ -11,8 +12,16 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 app.use(express.static('server/public'))
 
-let sendSolution
 
+let mathToRun
+let sendSolution = []
+
+
+function calculatorFunction(){
+    if(mathToRun.operation == "+"){
+        
+    }
+}
 
 app.get('/solution', (req, res) => {
     console.log("Arrived at /solution", sendSolution)
@@ -24,15 +33,16 @@ app.get('/solution', (req, res) => {
 
 app.post('/sendnumbers', (req, res) => {
     console.log("Body for /sendnumbers:", req.body);
+    if(!req.body.num1||!req.body.num2||req.body.operation){
+        // To prevent it from pulling if the the inputs are empty
+    } else{ mathToRun = req.body
 
-    let mathToRun = req.body
-    sendSolution = {
-        num1: mathToRun.num1,
-        num2: mathToRun.num2,
-        operator: mathToRun.operator
     }
 
-    console.log("current solution:", sendSolution)
+    
+
+    calculatorFunction(mathToRun)
+   
     res.sendStatus(201)
 })
 

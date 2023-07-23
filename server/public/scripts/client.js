@@ -12,7 +12,6 @@ function onReady() {
 
     console.log('Hey Jquery is working')
     getSolution()
-
 }
 
 // Made operator selector functions
