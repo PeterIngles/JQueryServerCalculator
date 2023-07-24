@@ -51,8 +51,8 @@ app.get('/solution', (req, res) => {
 
 app.post('/sendnumbers', (req, res) => {
     console.log("Body for /sendnumbers:", req.body);
-    // console.log(req.body.operation)
-    // if(!req.body.num1 ||! req.body.num2 || req.body.operation){
+    console.log(req.body.operation)
+    // if(!req.body.num1 || !req.body.num2 || !req.body.operation){
     //     // Tried to prevent it from pulling if the the inputs are empty
     // } else{ 
     mathToRun = req.body

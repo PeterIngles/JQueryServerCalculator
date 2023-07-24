@@ -2,7 +2,6 @@ $(document).ready(onReady)
 
 let solution
 let operator
-
 function onReady() {
     $('#enterBtn').on('click', sendNumbers)
     $('#plusBtn').on('click', plusSelector)
@@ -100,14 +99,19 @@ let getSolution = () => {
 
 
 let render = () => {
-    $("#output1").empty()
-    $("#output1").append(`${solution[0].answer}`)
-    $("#output2").empty()
-    for (let output of solution) {
-        $('#output2').append(`
-            <li>
-            <span>${output.num1}</span><span>${output.operation}</span><span>${output.num2}</span><span> = ${output.answer}</span>
-            </li>`)
+
+    if (solution[0]) {
+        $("#output1").empty()
+        $("#output2").empty()
+        $("#output1").append(`${solution[0].answer}`)
+
+        for (let output of solution) {
+            $('#output2').append(`
+                <li>
+                <span>${output.num1}</span><span>${output.operation}</span><span>${output.num2}</span><span> = ${output.answer}</span>
+                </li>`)
+        }
+
     }
 
 }
